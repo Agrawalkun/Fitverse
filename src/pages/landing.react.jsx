@@ -2,129 +2,127 @@ import React, { useEffect } from "react";
 import { Container, Box, Typography, Button } from "@mui/material";
 import Header from "../components/header/header.react";
 import heroImg from "../assets/images/hero-section-arm.svg";
-import { Icon } from '@mui/material';
+import { Icon } from "@mui/material";
 import features from "../data/data";
 import about from "../assets/images/reminder.svg";
 import impFeature from "../assets/images/tracking.svg";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-
 const Landing = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-   if (Cookies.get("uat")) {
+  if (Cookies.get("uat")) {
     navigate("/home");
-   }
+  }
   if (!Cookies.get("userID")) {
     navigate("/");
   }
+
   return (
     <>
-       <Header/>
-       {/* Hero Section */}
+      <Header />
+      {/* Hero Section */}
 
-       <Container
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              height: "100vh",
-              width: "100%",
-              flexDirection: { lg: "row", sm: "row", xs: "column-reverse" },
-              position: "relative",
-              backgroundColor: "transparent",
-            }}
-            maxWidth="false"
+      <Container
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          height: "100vh",
+          width: "100%",
+          flexDirection: { lg: "row", sm: "row", xs: "column-reverse" },
+          position: "relative",
+          backgroundColor: "transparent",
+        }}
+        maxWidth="false"
+      >
+        <Box
+          className="gradient__bg_down"
+          sx={{
+            position: "absolute",
+            top: "0",
+            left: "0",
+            zIndex: "-1",
+            width: "100%",
+            height: "100vh",
+          }}
+        />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "flex-start",
+            height: "100vh",
+            width: "100%",
+            color: "#fff",
+            gap: "1rem",
+          }}
         >
-            <Box
-                className="gradient__bg_down"
-                sx={{
-                  position: "absolute",
-                  top: "0",
-                  left: "0",
-                  zIndex: "-1",
-                  width: "100%",
-                  height: "100vh",
-                }} 
-            />
-            <Box
-                sx={{
-                 display: "flex",
-                 flexDirection: "column",
-                 justifyContent: "center",
-                 alignItems: "flex-start",
-                 height: "100vh",
-                 width: "100%",
-                 color: "#fff",
-                 gap: "1rem",
-                }}
-            >
-                <Typography
-                  variant="h5"
-                  color="secondary"
-                  sx={{
-                     display: { lg: "flex", sm: "flex", xs: "none" },
-                     fontSize: "2rem",
-                    }}
-                >
-                    Get Fit Together!
-                </Typography>
-                <Typography
-                  variant="h2"
-                  className="text-gradient"
-                  sx={{
-                     fontWeight: "bold",
-                     fontSize: { lg: "6rem", sm: "4rem", xs: "2rem" },
-                    }}
-                >
-                    Train <br />
-                    Different    
-                </Typography>
-                <Typography
-                   varient="h6"
-                   sx={{
-                     fontSize: { lg: "1.5rem", sm: "1rem" },
-                    }}
+          <Typography
+            variant="h5"
+            color="secondary"
+            sx={{
+              display: { lg: "flex", sm: "flex", xs: "none" },
+              fontSize: "2rem",
+            }}
+          >
+            Get Fit Together!
+          </Typography>
+          <Typography
+            variant="h2"
+            className="text-gradient"
+            sx={{
+              fontWeight: "bold",
+              fontSize: { lg: "6rem", sm: "4rem", xs: "2rem" },
+            }}
+          >
+            Train <br />
+            Different
+          </Typography>
+          <Typography
+            varient="h6"
+            sx={{
+              fontSize: { lg: "1.5rem", sm: "1rem" },
+            }}
+          >
+            With our AI powered fitness app, it will guide you with the best
+            program to help you get a healthy and ideal body.
+          </Typography>
+          <Link to="/login" className="link">
+            <Button variant="contained" color="secondary">
+              Get Started
+            </Button>
+          </Link>
+        </Box>
 
-                >
-                    With our AI powered fitness app, it will guide you with the best
-                    program to help you get a healthy and ideal body.
-                </Typography>
-                <Link to="/login" className="link">
-                   <Button variant="contained" color="secondary">
-                     Get Started
-                    </Button>
-                </Link>
-            </Box>
-
-            <Box
-              sx={{
-                  width: { lg: "80%", sm: "95%", xs: "100%" },
-                  height: { lg: "100%", xs: "100vh" },
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  zIndex: "1",
-                }}
-            >
-                <img src={heroImg} alt="gif" width="100%" />
-            </Box>
-            <Typography
-                variant="h5"
-                color="secondary"
-                sx={{
-                     display: { lg: "none", sm: "none", xs: "flex" },
-                     fontSize: "2rem",
-                     marginTop: { lg: "0", xs: "1rem" },
-                    }}
-            >
-             {/* Get Fit Together! */}
-            </Typography>
-        </Container>
-
-        {/* Feature */}
-        <Container
+        <Box
+          sx={{
+            width: { lg: "80%", sm: "95%", xs: "100%" },
+            height: { lg: "100%", xs: "100vh" },
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: "1",
+          }}
+        >
+          <img src={heroImg} alt="gif" width="100%" />
+        </Box>
+        <Typography
+          variant="h5"
+          color="secondary"
+          sx={{
+            display: { lg: "none", sm: "none", xs: "flex" },
+            fontSize: "2rem",
+            marginTop: { lg: "0", xs: "1rem" },
+          }}
+        >
+          Get Fit Together!
+        </Typography>
+      </Container>
+      {/* Features */}
+      <Container
         sx={{
           display: "flex",
           justifyContent: { lg: "space-between", sm: "center", xs: "center" },
@@ -160,7 +158,7 @@ const Landing = () => {
             gap: "2rem",
           }}
         >
-           <Typography
+          <Typography
             variant="h2"
             sx={{
               fontWeight: "bold",
@@ -196,17 +194,16 @@ const Landing = () => {
             flexWrap: "wrap",
           }}
         >
-          
-          {features.map((feature,key)=>(
+          {features.map((feature, key) => (
             <Box
               sx={{
-                display:"flex",
-                columnGap:"1rem",
+                display: "flex",
+                columnGap: "1rem",
                 justifyContent: "center",
                 alignItems: "center",
                 width: { xs: "100%" },
               }}
-             key ={key}
+              key={key}
             >
               <Icon color="secondary" fontSize="large">
                 {feature.icon}
@@ -236,8 +233,8 @@ const Landing = () => {
                   {feature.description}
                 </Typography>
               </Box>
-            </Box> 
-          ))}  
+            </Box>
+          ))}
         </Box>
       </Container>
       {/* About */}
@@ -256,7 +253,7 @@ const Landing = () => {
         }}
         maxWidth="false"
       >
-         <Box
+        <Box
           className="gradient__bg_up"
           sx={{
             position: "absolute",
@@ -277,7 +274,7 @@ const Landing = () => {
             width: { lg: "50%", sm: "60%", xs: "100%" },
           }}
         >
-           <img src={about} alt="about" width="100%"></img>
+          <img src={about} alt="about" width="100%"></img>
         </Box>
         <Box
           sx={{
@@ -288,7 +285,7 @@ const Landing = () => {
             width: { lg: "50%", xs: "80%" },
           }}
         >
-         <Typography
+          <Typography
             variant="h2"
             sx={{
               fontWeight: "bold",
@@ -317,7 +314,7 @@ const Landing = () => {
             particular posture and the camera alignment. Hence the alignment
             feature is required and integrate this functionality on a website
             which provides pattern in which the task
-          </Typography> 
+          </Typography>
         </Box>
       </Container>
       {/* USP */}
@@ -341,7 +338,7 @@ const Landing = () => {
         }}
         maxWidth="false"
       >
-         <Box
+        <Box
           className="gradient__bg_up"
           sx={{
             position: "absolute",
