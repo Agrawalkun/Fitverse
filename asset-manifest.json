@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/Major-Project/static/css/main.e163491b.css",
+    "main.js": "/Major-Project/static/js/main.6813fcff.js",
+    "static/media/hero-section-arm.svg": "/Major-Project/static/media/hero-section-arm.20a583a05ea80e705088fa25a37993c2.svg",
+    "static/media/finger-push-up.gif": "/Major-Project/static/media/finger-push-up.7c1654b3cf899a1fab91.gif",
+    "static/media/squat.gif": "/Major-Project/static/media/squat.d3f06303a43dd8041057.gif",
+    "static/media/dumbbell-bicep-curls.gif": "/Major-Project/static/media/dumbbell-bicep-curls.8ba64e8f4fa3ab5295d4.gif",
+    "static/media/Crunch.gif": "/Major-Project/static/media/Crunch.eae0336c4c5fd0691ce8.gif",
+    "static/media/reminder.svg": "/Major-Project/static/media/reminder.452659d2e8ed22765c5276e52cd78d91.svg",
+    "static/media/tracking.svg": "/Major-Project/static/media/tracking.fbc8ab63c7ad5961e4c19b799f456799.svg",
+    "static/media/logo-with-text2-removebg-preview.png": "/Major-Project/static/media/logo-with-text2-removebg-preview.a663a47836e04ed6b9b6.png",
+    "static/media/login.svg": "/Major-Project/static/media/login.ffae51ca407929f2a53f47806df355a7.svg",
+    "static/media/reminder_dashboard.svg": "/Major-Project/static/media/reminder_dashboard.b862fc273f97b3fea01e2b287d24aeda.svg",
+    "static/media/motivation.svg": "/Major-Project/static/media/motivation.a4abab6e057ed0305e80290a01f0f9db.svg",
+    "static/media/cookies.svg": "/Major-Project/static/media/cookies.4587edc709e0426557685d7605d4390c.svg",
+    "static/media/initialIMG.svg": "/Major-Project/static/media/initialIMG.68b5ba3cba7e77b6e30197108b421802.svg",
+    "static/media/popular.svg": "/Major-Project/static/media/popular.70638f70d25e29a731e62a1446352457.svg",
+    "index.html": "/Major-Project/index.html",
+    "main.e163491b.css.map": "/Major-Project/static/css/main.e163491b.css.map",
+    "main.6813fcff.js.map": "/Major-Project/static/js/main.6813fcff.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e163491b.css",
+    "static/js/main.6813fcff.js"
+  ]
+}
