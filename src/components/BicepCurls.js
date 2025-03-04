@@ -1,23 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Pose } from "@mediapipe/pose";
 import * as cam from "@mediapipe/camera_utils";
 import Webcam from "react-webcam";
-import { useRef } from "react";
 import angleBetweenThreePoints from "./angle";
-import { Button } from "@material-ui/core";
-
+import Button from "@mui/material/Button";
 import { Link, useNavigate } from "react-router-dom";
-import { Container, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { Container, Typography, Box } from "@mui/material";
 import imgURL from "../assets/images/dumbbell-bicep-curls.gif";
-
 import { setDoc, doc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import { db } from "../firebase";
 import Cookies from "js-cookie";
 
 let count = 0;
-
 const speech = window.speechSynthesis;
 const speak = (count) => {
   const object = new SpeechSynthesisUtterance(count);
@@ -28,24 +23,18 @@ const speak = (count) => {
     speech.speak(object);
   }
 };
+
 const BicepCurls = () => {
   const navigate = useNavigate();
-  // if (!Cookies.get("userID")) {
-  //   alert("Please Login");
-  //   navigate("/");
-  // }
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
-  // let camera = null;
   const [camera, setCamera] = useState(null);
   const countTextbox = useRef(null);
-
   let dir = 0;
 
   useEffect(() => {
     const startTime = new Date();
     const startTimeSec = startTime.getSeconds();
-
     localStorage.setItem("bicepStartTime", startTimeSec);
     console.log(startTime);
   }, []);
@@ -53,7 +42,6 @@ const BicepCurls = () => {
   function onResult(results) {
     if (results.poseLandmarks) {
       const position = results.poseLandmarks;
-      // console.log (position);
       canvasRef.current.width = webcamRef.current.video.videoWidth;
       canvasRef.current.height = webcamRef.current.video.videoHeight;
 
@@ -62,16 +50,10 @@ const BicepCurls = () => {
 
       const leftHand = [];
       const rightHand = [];
-
       const righthip = [];
       const lefthip = [];
       const hiparr = [11, 12, 23, 24, 25, 26];
 
-      //index 11,13,15 left hand, angle range 0-5
-      //index 12,14,16 right hand, angle range 0-5
-
-      //index 12,24,26 right hip, angle range 60-90
-      //index 11,23,25 left hip, angle range 60-90
       for (let i = 11; i < 17; i++) {
         let obj = {};
         obj["x"] = position[i].x * width;
@@ -97,7 +79,6 @@ const BicepCurls = () => {
 
       const leftHandAngle = Math.round(angleBetweenThreePoints(leftHand));
       const rightHandAngle = Math.round(angleBetweenThreePoints(rightHand));
-
       const rightHipAngle = Math.round(angleBetweenThreePoints(righthip));
       const leftHipAngle = Math.round(angleBetweenThreePoints(lefthip));
 
@@ -105,35 +86,11 @@ const BicepCurls = () => {
       const canvasCtx = canvasElement.getContext("2d");
       canvasCtx.save();
       canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-      //canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height)
 
-      let inRangeRightHand;
-      if (rightHandAngle <= 20) {
-        inRangeRightHand = true;
-      } else {
-        inRangeRightHand = false;
-      }
-
-      let inRangeLeftHand;
-      if (leftHandAngle <= 20) {
-        inRangeLeftHand = true;
-      } else {
-        inRangeLeftHand = false;
-      }
-
-      let inRangeRightHip;
-      if (rightHipAngle >= 170 && rightHipAngle <= 180) {
-        inRangeRightHip = true;
-      } else {
-        inRangeRightHip = false;
-      }
-
-      let inRangeLeftHip;
-      if (leftHipAngle >= 170 && leftHipAngle <= 180) {
-        inRangeLeftHip = true;
-      } else {
-        inRangeLeftHip = false;
-      }
+      let inRangeRightHand = rightHandAngle <= 20;
+      let inRangeLeftHand = leftHandAngle <= 20;
+      let inRangeRightHip = rightHipAngle >= 170 && rightHipAngle <= 180;
+      let inRangeLeftHip = leftHipAngle >= 170 && leftHipAngle <= 180;
 
       for (let i = 0; i < 2; i++) {
         canvasCtx.beginPath();
@@ -142,44 +99,28 @@ const BicepCurls = () => {
         //right hand
         canvasCtx.moveTo(rightHand[i].x, rightHand[i].y);
         canvasCtx.lineTo(rightHand[i + 1].x, rightHand[i + 1].y);
-        if (inRangeRightHand) {
-          canvasCtx.strokeStyle = "green";
-        } else {
-          canvasCtx.strokeStyle = "red";
-        }
+        canvasCtx.strokeStyle = inRangeRightHand ? "green" : "red";
         canvasCtx.stroke();
 
         //lefthand
         canvasCtx.beginPath();
         canvasCtx.moveTo(leftHand[i].x, leftHand[i].y);
         canvasCtx.lineTo(leftHand[i + 1].x, leftHand[i + 1].y);
-        if (inRangeLeftHand) {
-          canvasCtx.strokeStyle = "green";
-        } else {
-          canvasCtx.strokeStyle = "red";
-        }
+        canvasCtx.strokeStyle = inRangeLeftHand ? "green" : "red";
         canvasCtx.stroke();
 
         //right hip
         canvasCtx.beginPath();
         canvasCtx.moveTo(righthip[i].x, righthip[i].y);
         canvasCtx.lineTo(righthip[i + 1].x, righthip[i + 1].y);
-        if (inRangeRightHip) {
-          canvasCtx.strokeStyle = "green";
-        } else {
-          canvasCtx.strokeStyle = "red";
-        }
+        canvasCtx.strokeStyle = inRangeRightHip ? "green" : "red";
         canvasCtx.stroke();
 
         //left hip
         canvasCtx.beginPath();
         canvasCtx.moveTo(lefthip[i].x, lefthip[i].y);
         canvasCtx.lineTo(lefthip[i + 1].x, lefthip[i + 1].y);
-        if (inRangeLeftHip) {
-          canvasCtx.strokeStyle = "green";
-        } else {
-          canvasCtx.strokeStyle = "red";
-        }
+        canvasCtx.strokeStyle = inRangeLeftHip ? "green" : "red";
         canvasCtx.stroke();
       }
       for (let i = 0; i < 3; i++) {
@@ -203,13 +144,13 @@ const BicepCurls = () => {
       }
 
       if (
-        inRangeLeftHand === true &&
-        inRangeRightHand === true &&
-        inRangeRightHip === true &&
-        inRangeLeftHip === true
+        inRangeLeftHand &&
+        inRangeRightHand &&
+        inRangeRightHip &&
+        inRangeLeftHip
       ) {
         if (dir === 0) {
-          count = count + 1;
+          count++;
           speak(count);
           dir = 1;
           console.log(count);
@@ -218,10 +159,10 @@ const BicepCurls = () => {
 
       if (
         !(
-          inRangeLeftHand === true &&
-          inRangeRightHand === true &&
-          inRangeRightHip === true &&
-          inRangeLeftHip === true
+          inRangeLeftHand &&
+          inRangeRightHand &&
+          inRangeRightHip &&
+          inRangeLeftHip
         )
       ) {
         dir = 0;
@@ -256,61 +197,45 @@ const BicepCurls = () => {
     });
 
     pose.onResults(onResult);
-     let cameraInstance = null;
-        const startCamera = async()=>{
-            if(webcamRef.current && webcamRef.current.video){
-                cameraInstance = new cam.Camera(webcamRef.current.video, {
-                    onFrame: async ()=>{
-                        if (webcamRef.current && webcamRef.current.video) { // Crucial check here!
-                            if (countTextbox.current) {
-                                countTextbox.current.value = count;
-                            } else {
-                                console.warn("countTextbox is not yet available");
-                            }
-                            await pose.send({ image: webcamRef.current.video });
-                        } else {
-                            console.error("webcamRef or its video property is null within onFrame. Stopping camera.");
-                            if (cameraInstance) {
-                                cameraInstance.stop(); // Stop the camera to prevent further errors
-                            }
-                        }
-                    },
-                    width: 640,
-                    height: 480,
-                });
-                cameraInstance.start();
-            setCamera(cameraInstance);
-            } else{
-                console.error("webcamRef or its video property is null.  Camera initialization failed.");
-            }
-    
-        };
-        startCamera();
-    
 
-  //   if (
-  //     typeof webcamRef.current !== "undefined" &&
-  //     webcamRef.current !== null
-  //   ) {
-  //     camera = new cam.Camera(webcamRef.current.video, {
-  //       onFrame: async () => {
-  //         countTextbox.current.value = count;
-  //         //console.log(count, dir)
-  //         //console.log("hello",countTextbox.current.value)
-  //         await pose.send({ image: webcamRef.current.video });
-  //       },
-  //       width: 640,
-  //       height: 480,
-  //     });
-  //     camera.start();
-  //   }
-  // });
-  return ()=>{
-    if(cameraInstance && cameraInstance.stop) {
+    let cameraInstance = null;
+    const startCamera = async () => {
+      if (webcamRef.current && webcamRef.current.video) {
+        cameraInstance = new cam.Camera(webcamRef.current.video, {
+          onFrame: async () => {
+            if (webcamRef.current && webcamRef.current.video) {
+              if (countTextbox.current) {
+                countTextbox.current.value = count;
+              } else {
+                console.warn("countTextbox is not yet available");
+              }
+              await pose.send({ image: webcamRef.current.video });
+            } else {
+              console.error(
+                "webcamRef or its video property is null within onFrame. Stopping camera."
+              );
+              if (cameraInstance) {
+                cameraInstance.stop();
+              }
+            }
+          },
+          width: 640,
+          height: 480,
+        });
+        cameraInstance.start();
+        setCamera(cameraInstance);
+      } else {
+        console.error("webcamRef or its video property is null. Camera initialization failed.");
+      }
+    };
+    startCamera();
+
+    return () => {
+      if (cameraInstance && cameraInstance.stop) {
         cameraInstance.stop();
-    }
-  };
-},[]);
+      }
+    };
+  }, []);
 
   function resetCount() {
     console.log("clicked");
@@ -335,6 +260,7 @@ const BicepCurls = () => {
     });
     console.log(repsCounter);
   };
+
   return (
     <>
       <Container
@@ -362,9 +288,7 @@ const BicepCurls = () => {
           <canvas
             ref={canvasRef}
             className="full-width"
-            style={{
-              position: "absolute",
-            }}
+            style={{ position: "absolute" }}
           />
         </Box>
         <Box
@@ -394,9 +318,9 @@ const BicepCurls = () => {
               justifyContent: "center",
             }}
           >
-            <img src={imgURL} width="100%" alt="Biceps Curls"></img>
+            <img src={imgURL} width="100%" alt="Biceps Curls" />
           </Box>
-          <br></br>
+          <br />
           <Box
             sx={{
               display: "flex",
@@ -410,7 +334,6 @@ const BicepCurls = () => {
             <Box
               sx={{
                 display: "flex",
-
                 alignItems: "center",
                 justifyContent: "center",
                 gap: "2rem",
@@ -464,7 +387,7 @@ const BicepCurls = () => {
                   sx={{ cursor: "pointer" }}
                   onClick={handleClick}
                 >
-                  back
+                  Back
                 </Button>
               </Link>
             </Box>

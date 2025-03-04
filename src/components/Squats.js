@@ -4,7 +4,7 @@ import * as cam from "@mediapipe/camera_utils";
 import Webcam from "react-webcam";
 import { useRef } from "react";
 import angleBetweenThreePoints from "./angle";
-import { Button } from "@material-ui/core";
+import Button from "@mui/material/Button";
 
 import { Link, useNavigate } from "react-router-dom";
 import { Container, Typography } from "@mui/material";

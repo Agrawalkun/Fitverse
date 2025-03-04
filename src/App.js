@@ -9,7 +9,7 @@ import Login from "./pages/Login.react";
 
 import Weightloss from "./pages/Weightloss.react";
 import Workout from "./pages/Workout.react";
-import { Container, Box, Typography } from "@mui/material";
+import { Container, Box} from "@mui/material";
 import logo from "./assets/images/logo-with-text2-removebg-preview.png";
 import BodyMeasurements from "./pages/BodyMeasurements.react";
 import Diet from "./pages/Diet.react";
