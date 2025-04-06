@@ -13,6 +13,7 @@ import { Container, Box} from "@mui/material";
 import logo from "./assets/images/logo-with-text2-removebg-preview.png";
 import BodyMeasurements from "./pages/BodyMeasurements.react";
 import Diet from "./pages/Diet.react";
+import Trikonasana from "./components/trikonasana";
 
 
 import BicepCurls from "./components/BicepCurls";
@@ -53,6 +54,7 @@ if (location === "/yoga" && location === "/bicepcurl") {
       element ={ <Counter  exercise={"crunches"} />} 
       exact
       />
+      <Route path="/trikonasana" element={<Trikonasana />} />
 
     </Routes>
     {/* footer */}

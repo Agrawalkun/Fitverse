@@ -232,6 +232,10 @@ const PushUps = () => {
 
   const handleClick = () => {
     const ID = Cookies.get("userID");
+    if (!ID) {
+      console.error("User ID is undefined. Please ensure the user is logged in.");
+      return;
+  }
     const docRef = doc(db, `user/${ID}/pushups`, uuidv4());
     const startTimeStamp = localStorage.getItem("pushUpStartTime");
     const endTimeVar = new Date();
