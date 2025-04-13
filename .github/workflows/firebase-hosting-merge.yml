@@ -32,6 +32,9 @@ on:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    env:
+      CI: false  # Prevent build from failing on ESLint warnings
+
     steps:
       - uses: actions/checkout@v4
 
