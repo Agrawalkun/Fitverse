@@ -131,6 +131,7 @@ const Home = () => {
         .then((response) => setQuotes(response))
         .catch((err) => console.error(err));
     };
+
     fetchBicepTime();
     fetchPushUpTime();
     fetchSquatsTime();
