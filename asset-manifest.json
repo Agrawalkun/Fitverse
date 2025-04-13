@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Major-Project/static/css/main.e163491b.css",
-    "main.js": "/Major-Project/static/js/main.8fd4e229.js",
+    "main.js": "/Major-Project/static/js/main.dbe2428f.js",
     "static/media/hero-section-arm.svg": "/Major-Project/static/media/hero-section-arm.20a583a05ea80e705088fa25a37993c2.svg",
     "static/media/finger-push-up.gif": "/Major-Project/static/media/finger-push-up.7c1654b3cf899a1fab91.gif",
     "static/media/squat.gif": "/Major-Project/static/media/squat.d3f06303a43dd8041057.gif",
@@ -15,13 +15,14 @@
     "static/media/motivation.svg": "/Major-Project/static/media/motivation.a4abab6e057ed0305e80290a01f0f9db.svg",
     "static/media/cookies.svg": "/Major-Project/static/media/cookies.4587edc709e0426557685d7605d4390c.svg",
     "static/media/initialIMG.svg": "/Major-Project/static/media/initialIMG.68b5ba3cba7e77b6e30197108b421802.svg",
+    "static/media/trikonasana.png": "/Major-Project/static/media/trikonasana.c4496f55cfba82eb4174.png",
     "static/media/popular.svg": "/Major-Project/static/media/popular.70638f70d25e29a731e62a1446352457.svg",
     "index.html": "/Major-Project/index.html",
     "main.e163491b.css.map": "/Major-Project/static/css/main.e163491b.css.map",
-    "main.8fd4e229.js.map": "/Major-Project/static/js/main.8fd4e229.js.map"
+    "main.dbe2428f.js.map": "/Major-Project/static/js/main.dbe2428f.js.map"
   },
   "entrypoints": [
     "static/css/main.e163491b.css",
-    "static/js/main.8fd4e229.js"
+    "static/js/main.dbe2428f.js"
   ]
 }
