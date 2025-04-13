@@ -65,7 +65,7 @@ const HomeHeader = ({props}) => {
             color: "#fff",
           }}
         >
-          <a href="/bm" className="link" onClick={handleDrawerToggle}>
+          {/* <a href="/bm" className="link" onClick={handleDrawerToggle}>
             <ListItemButton>
               <ListItemText primary="Measurements" />
             </ListItemButton>
@@ -84,7 +84,28 @@ const HomeHeader = ({props}) => {
             <ListItemButton>
               <ListItemText primary="Workout" />
             </ListItemButton>
-          </a>
+          </a> */}
+
+          <Link to ="/bm" className="link" onClick={handleDrawerToggle}>
+            <ListItemButton>
+              <ListItemText primary="Measurements" />
+            </ListItemButton>
+          </Link>
+          <Link to="/diet" className="link" onClick={handleDrawerToggle}>
+            <ListItemButton>
+              <ListItemText primary="Diet" />
+            </ListItemButton>
+          </Link>
+          <Link to="/yoga" className="link" onClick={handleDrawerToggle}>
+            <ListItemButton>
+              <ListItemText primary="Yoga" />
+            </ListItemButton>
+          </Link>
+          <Link to="/workout" className="link" onClick={handleDrawerToggle}>
+            <ListItemButton>
+              <ListItemText primary="Workout" />
+            </ListItemButton>
+          </Link>
           <Divider
             color="#fff"
             sx={{
