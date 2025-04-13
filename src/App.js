@@ -119,23 +119,35 @@ import logo from "./assets/images/logo-with-text2-removebg-preview.png";
 function App() {
   const location = useLocation();
 
+  // useEffect(() => {
+  //   // Conditionally show video and canvas elements on certain routes
+  //   const showCanvasRoutes = ["/yoga", "/bicepcurls"];
+  //   if (showCanvasRoutes.includes(location.pathname)) {
+  //     const videoOutput = document.querySelector(".input_video");
+  //     const canvas = document.querySelector(".output_canvas");
+  //     if (videoOutput && canvas) {
+  //       videoOutput.style.display = "flex";
+  //       canvas.style.display = "flex";
+  //     }
+  //   }
+  // }, [location]);
+
   useEffect(() => {
-    // Conditionally show video and canvas elements on certain routes
     const showCanvasRoutes = ["/yoga", "/bicepcurls"];
-    if (showCanvasRoutes.includes(location.pathname)) {
-      const videoOutput = document.querySelector(".input_video");
-      const canvas = document.querySelector(".output_canvas");
-      if (videoOutput && canvas) {
-        videoOutput.style.display = "flex";
-        canvas.style.display = "flex";
-      }
+    const videoOutput = document.querySelector(".input_video");
+    const canvas = document.querySelector(".output_canvas");
+  
+    if (videoOutput && canvas) {
+      const shouldShow = showCanvasRoutes.includes(location.pathname);
+      videoOutput.style.display = shouldShow ? "flex" : "none";
+      canvas.style.display = shouldShow ? "flex" : "none";
     }
   }, [location]);
+  
 
   return (
     <>
       <Routes>
-        <Route path="*" element={<Landing />} />
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/bm" element={<BodyMeasurements />} />
@@ -149,6 +161,7 @@ function App() {
         <Route path="/workout" element={<Workout />} />
         <Route path="/crunches" element={<Counter exercise="crunches" />} />
         <Route path="/trikonasana" element={<Trikonasana />} />
+        <Route path="*" element={<Landing />} />
       </Routes>
 
       {/* Footer */}
