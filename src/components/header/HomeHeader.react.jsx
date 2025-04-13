@@ -194,18 +194,18 @@ const HomeHeader = ({props}) => {
                 color: "#ffffff",
               }}
             >
-              <a href="/bm" className="link">
+              <Link to ="/bm" className="link">
                 <Button variant="h6">Measurements</Button>
-              </a>
-              <a href="/diet" className="link">
+              </Link>
+              <Link to="/diet" className="link">
                 <Button variant="h6">Diet</Button>
-              </a>
-              <a href="/yoga" className="link">
+              </Link>
+              <Link to="/yoga" className="link">
                 <Button variant="h6">Yoga</Button>
-              </a>
-              <a href="/workout" className="link">
+              </Link>
+              <Link to="/workout" className="link">
                 <Button variant="h6">Workout</Button>
-              </a>
+              </Link>
               <Link to="/" className="link">
                 <Button
                   variant="contained"
