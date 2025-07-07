@@ -129,7 +129,7 @@ function App() {
   //       videoOutput.style.display = "flex";
   //       canvas.style.display = "flex";
   //     }
-  //   }
+  //   
   // }, [location]);
 
   useEffect(() => {
